@@ -256,6 +256,7 @@
         android:layout_toStartOf="@+id/buttonResultado"
         android:background="@color/colorBlanco"
         android:text="%"
+        android:onClick="operadores"
         android:textColor="@color/colorNegro"
         android:textSize="40dp" />
 
