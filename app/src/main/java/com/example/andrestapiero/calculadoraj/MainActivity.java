@@ -18,83 +18,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void numeros(View view) {
-        String val = null;
+        String inputNumber = res.getText().toString();
+        String selectedNumber = "";
 
         switch (view.getId()) {
             case R.id.btn0:
-                val = res.getText().toString();
-                val = val + "0";
-              //  res.setText(val);
+                selectedNumber = "0";
                 break;
 
             case R.id.btn1:
-                val = res.getText().toString();
-                val = val + "1";
-             //   res.setText(val);
+                selectedNumber = "1";
                 break;
 
             case R.id.btn2:
-                val = res.getText().toString();
-                val = val + "2";
-              //  res.setText(val);
+                selectedNumber =  "2";
                 break;
 
             case R.id.btn3:
-                val = res.getText().toString();
-                val = val + "3";
-               // res.setText(val);
+                selectedNumber =  "3";
                 break;
 
             case R.id.btn4:
-                val = res.getText().toString();
-                val = val + "4";
-               // res.setText(val);
+                selectedNumber =  "4";
                 break;
 
             case R.id.btn5:
-                val = res.getText().toString();
-                val = val + "5";
-               // res.setText(val);
+                selectedNumber =  "5";
                 break;
 
             case R.id.btn6:
-                val = res.getText().toString();
-                val = val + "6";
-            //    res.setText(val);
+                selectedNumber =  "6";
                 break;
 
             case R.id.btn7:
-                val = res.getText().toString();
-                val = val + "7";
-              //  res.setText(val);
+                selectedNumber =  "7";
                 break;
 
             case R.id.btn8:
-                val = res.getText().toString();
-                val = val + "8";
-            //    res.setText(val);
+                selectedNumber =  "8";
                 break;
 
             case R.id.btn9:
-                val = res.getText().toString();
-                val = val + "9";
-              //  res.setText(val);
+                selectedNumber =  "9";
                 break;
 
             case R.id.btncoma:
-                if(res.getText().toString().equals("")){ // Si String es no esta vacio agregue el punto
-
-
-                }else{
-                    val = res.getText().toString();
-                    val = val + ".";
-                    res.setText(val);
+                if(!isResultNumberEmpty() && !res.getText().toString().contains(".")){
+                    selectedNumber = ".";
                 }
                 break;
         }
-        res.setText(val);
+
+        res.setText(inputNumber.concat(selectedNumber));
     }
 
+    private Boolean isResultNumberEmpty() {
+        return res.getText().toString().equals("");
+    }
 
 
     public void operadores(View view) {
@@ -103,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.btnSuma:
-                try {
+                if (isResultNumberEmpty()) {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
                     op = 1;
-                } catch (NumberFormatException nfe) {}
+                }
                 break;
 
             case R.id.btnMenos:
