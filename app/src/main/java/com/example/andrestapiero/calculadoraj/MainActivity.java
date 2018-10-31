@@ -18,79 +18,87 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void numeros(View view) {
-        String val;
+        String val = null;
+
         switch (view.getId()) {
             case R.id.btn0:
                 val = res.getText().toString();
                 val = val + "0";
-                res.setText(val);
+              //  res.setText(val);
                 break;
 
             case R.id.btn1:
                 val = res.getText().toString();
                 val = val + "1";
-                res.setText(val);
+             //   res.setText(val);
                 break;
 
             case R.id.btn2:
                 val = res.getText().toString();
                 val = val + "2";
-                res.setText(val);
+              //  res.setText(val);
                 break;
 
             case R.id.btn3:
                 val = res.getText().toString();
                 val = val + "3";
-                res.setText(val);
+               // res.setText(val);
                 break;
 
             case R.id.btn4:
                 val = res.getText().toString();
                 val = val + "4";
-                res.setText(val);
+               // res.setText(val);
                 break;
 
             case R.id.btn5:
                 val = res.getText().toString();
                 val = val + "5";
-                res.setText(val);
+               // res.setText(val);
                 break;
 
             case R.id.btn6:
                 val = res.getText().toString();
                 val = val + "6";
-                res.setText(val);
+            //    res.setText(val);
                 break;
 
             case R.id.btn7:
                 val = res.getText().toString();
                 val = val + "7";
-                res.setText(val);
+              //  res.setText(val);
                 break;
 
             case R.id.btn8:
                 val = res.getText().toString();
                 val = val + "8";
-                res.setText(val);
+            //    res.setText(val);
                 break;
 
             case R.id.btn9:
                 val = res.getText().toString();
                 val = val + "9";
-                res.setText(val);
+              //  res.setText(val);
                 break;
+
             case R.id.btncoma:
-                val = res.getText().toString();
-                val = val + ".";
-                res.setText(val);
+                if(res.getText().toString().equals("")){ // Si String es no esta vacio agregue el punto
+
+
+                }else{
+                    val = res.getText().toString();
+                    val = val + ".";
+                    res.setText(val);
+                }
                 break;
         }
+        res.setText(val);
     }
+
 
 
     public void operadores(View view) {
         String ope1;
-
 
         switch (view.getId()) {
 
@@ -98,17 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
-                    res.setText(" ");
                     op = 1;
-                } catch (NumberFormatException nfe) {
-                }
+                } catch (NumberFormatException nfe) {}
                 break;
 
             case R.id.btnMenos:
                 try {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
-                    res.setText(" ");
                     op = 2;
                 } catch (NumberFormatException nfe) {
                 }
@@ -118,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
-                    res.setText(" ");
                     op = 3;
                 } catch (NumberFormatException nfe) {
                 }
@@ -128,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
-                    res.setText(" ");
                     op = 4;
                 } catch (NumberFormatException nfe) {
                 }
@@ -137,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ope1 = res.getText().toString();
                     operando1 = Double.parseDouble(ope1);
-                    res.setText(" ");
                     op = 5;
                 } catch (NumberFormatException nfe) {
                 }
                 break;
         }
+        res.setText(" ");
     }
 
 
@@ -150,40 +153,36 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             String ope2 = res.getText().toString();
-            res.setText("");
+         //   res.setText("");
             switch (op) {
                 case 1:
                     operand2 = Double.parseDouble(ope2);
                     resultado = operando1 + operand2;
-                    res.setText("" + resultado);
                     operando1 = resultado;
                     break;
                 case 2:
                     operand2 = Double.parseDouble(ope2);
                     resultado = operando1 - operand2;
-                    res.setText("" + resultado);
                     operando1 = resultado;
                     break;
 
                 case 3:
                     operand2 = Double.parseDouble(ope2);
                     resultado = operando1*operand2;
-                    res.setText("" + resultado);
                     operando1 = resultado;
                     break;
                 case 4:
                     operand2 = Double.parseDouble(ope2);
                     resultado = operando1 / operand2;
-                    res.setText("" + resultado);
                     operando1 = resultado;
                     break;
                 case 5:
                     operand2 = Double.parseDouble(ope2);
                     resultado = operand2 *( operando1/100.0);
-                    res.setText("" + resultado);
                     operando1 = resultado;
                     break;
             }
+            res.setText("" + resultado);
         } catch (NumberFormatException nfe) {
         }
     }

@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
         android:gravity="right"
+
         android:textColor="@color/colorNegro"
         android:textSize="35dp"
         android:typeface="monospace"
@@ -24,8 +25,8 @@
 
     <Button
         android:id="@+id/btndelete"
-        android:layout_width="0dp"
-        android:layout_height="95dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_above="@id/btn7"
         android:layout_toStartOf="@+id/btn5"
         android:background="@color/colorGris"
@@ -35,6 +36,7 @@
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/btn7"
         app:layout_constraintEnd_toStartOf="@+id/btndv"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultado" />
@@ -42,7 +44,7 @@
     <Button
         android:id="@+id/btndv"
         android:layout_width="0dp"
-        android:layout_height="95dp"
+        android:layout_height="0dp"
         android:layout_above="@+id/btn8"
         android:layout_toStartOf="@+id/btnSuma"
         android:background="@color/colorGris"
@@ -53,12 +55,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btn8"
         app:layout_constraintEnd_toStartOf="@+id/btnmtl"
         app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btndelete"
         app:layout_constraintTop_toBottomOf="@+id/resultado" />
 
     <Button
         android:id="@+id/btnmtl"
         android:layout_width="0dp"
-        android:layout_height="95dp"
+        android:layout_height="0dp"
         android:layout_above="@+id/btn9"
         android:layout_toStartOf="@+id/btnSuma"
         android:background="@color/colorGris"
@@ -69,22 +72,24 @@
         app:layout_constraintBottom_toTopOf="@+id/btn9"
         app:layout_constraintEnd_toStartOf="@+id/btndel"
         app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btndv"
         app:layout_constraintTop_toBottomOf="@+id/resultado" />
 
     <Button
         android:id="@+id/btndel"
         android:layout_width="0dp"
-        android:layout_height="95dp"
+        android:layout_height="0dp"
         android:layout_above="@+id/btnMenos"
         android:layout_toStartOf="@+id/buttonResultado"
         android:background="@color/colorGris"
         android:onClick="clear"
-        android:text="|-"
+        android:text="Del"
         android:textColor="@color/colorAzul"
-        android:textSize="40dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/btnMenos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btnmtl"
         app:layout_constraintTop_toBottomOf="@+id/resultado" />
 
     <Button
