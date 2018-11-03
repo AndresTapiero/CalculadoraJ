@@ -6,19 +6,19 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    int op = 0;
-    private TextView res;
-    private double resultado, operando1,operand2;
+    int operador = 0;
+    private TextView restxt;
+    private double result, number1, number2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        res = (TextView) findViewById(R.id.resultado);
+        restxt = (TextView) findViewById(R.id.resultado);
     }
 
-    public void numeros(View view) {
-        String inputNumber = res.getText().toString();
+    public void OnClickListenerNumbers(View view) {
+        String inputNumber = restxt.getText().toString();
         String selectedNumber = "";
 
         switch (view.getId()) {
@@ -31,157 +31,136 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn2:
-                selectedNumber =  "2";
+                selectedNumber = "2";
                 break;
 
             case R.id.btn3:
-                selectedNumber =  "3";
+                selectedNumber = "3";
                 break;
 
             case R.id.btn4:
-                selectedNumber =  "4";
+                selectedNumber = "4";
                 break;
 
             case R.id.btn5:
-                selectedNumber =  "5";
+                selectedNumber = "5";
                 break;
 
             case R.id.btn6:
-                selectedNumber =  "6";
+                selectedNumber = "6";
                 break;
 
             case R.id.btn7:
-                selectedNumber =  "7";
+                selectedNumber = "7";
                 break;
 
             case R.id.btn8:
-                selectedNumber =  "8";
+                selectedNumber = "8";
                 break;
 
             case R.id.btn9:
-                selectedNumber =  "9";
+                selectedNumber = "9";
                 break;
 
-            case R.id.btncoma:
-                if(!isResultNumberEmpty() && !res.getText().toString().contains(".")){
+            case R.id.btnpoint:
+                if (!isResultNumberEmpty() && !restxt.getText().toString().contains(".")) {
                     selectedNumber = ".";
                 }
                 break;
         }
-
-        res.setText(inputNumber.concat(selectedNumber));
+        restxt.setText(inputNumber.concat(selectedNumber));
     }
 
-    private Boolean isResultNumberEmpty() {
-        return res.getText().toString().equals("");
+    private Boolean isResultNumberEmpty() {         //Metodo que compara si el String esta vacio
+        return restxt.getText().toString().equals("");
     }
 
-
-    public void operadores(View view) {
-        String ope1;
+    public void OnClickListenerOperators(View view) {
+        String text1;
+        text1 = restxt.getText().toString();
 
         switch (view.getId()) {
-
             case R.id.btnSuma:
-                if (isResultNumberEmpty()) {
-                    ope1 = res.getText().toString();
-                    operando1 = Double.parseDouble(ope1);
-                    op = 1;
+                if (!isResultNumberEmpty()) {
+                    number1 = Double.parseDouble(text1);
+                    operador = 1;
                 }
                 break;
 
             case R.id.btnMenos:
-                try {
-                    ope1 = res.getText().toString();
-                    operando1 = Double.parseDouble(ope1);
-                    op = 2;
-                } catch (NumberFormatException nfe) {
+                if (!isResultNumberEmpty()) {
+                    number1 = Double.parseDouble(text1);
+                    operador = 2;
                 }
                 break;
 
             case R.id.btnmtl:
-                try {
-                    ope1 = res.getText().toString();
-                    operando1 = Double.parseDouble(ope1);
-                    op = 3;
-                } catch (NumberFormatException nfe) {
+                if (!isResultNumberEmpty()) {
+                    number1 = Double.parseDouble(text1);
+                    operador = 3;
                 }
                 break;
 
             case R.id.btndv:
-                try {
-                    ope1 = res.getText().toString();
-                    operando1 = Double.parseDouble(ope1);
-                    op = 4;
-                } catch (NumberFormatException nfe) {
+                if (!isResultNumberEmpty()) {
+                    number1 = Double.parseDouble(text1);
+                    operador = 4;
                 }
+
                 break;
             case R.id.btnpor:
-                try {
-                    ope1 = res.getText().toString();
-                    operando1 = Double.parseDouble(ope1);
-                    op = 5;
-                } catch (NumberFormatException nfe) {
-                }
+                if (!isResultNumberEmpty()){
+                    number1 = Double.parseDouble(text1);
+                    operador = 5;}
                 break;
         }
-        res.setText(" ");
+        restxt.setText("");
     }
 
+    public void OnClickListenerEqual(View view) {
 
-    public void igual(View view) {
-
-        try {
-            String ope2 = res.getText().toString();
-         //   res.setText("");
-            switch (op) {
+        if (!isResultNumberEmpty()) {
+            String text2 = restxt.getText().toString();
+            number2 = Double.parseDouble(text2);
+            switch (operador) {
                 case 1:
-                    operand2 = Double.parseDouble(ope2);
-                    resultado = operando1 + operand2;
-                    operando1 = resultado;
+                    result = number1 + number2;
                     break;
+
                 case 2:
-                    operand2 = Double.parseDouble(ope2);
-                    resultado = operando1 - operand2;
-                    operando1 = resultado;
+                    result = number1 - number2;
                     break;
 
                 case 3:
-                    operand2 = Double.parseDouble(ope2);
-                    resultado = operando1*operand2;
-                    operando1 = resultado;
+                    result = number1 * number2;
                     break;
+
                 case 4:
-                    operand2 = Double.parseDouble(ope2);
-                    resultado = operando1 / operand2;
-                    operando1 = resultado;
+                    result = number1 / number2;
                     break;
+
                 case 5:
-                    operand2 = Double.parseDouble(ope2);
-                    resultado = operand2 *( operando1/100.0);
-                    operando1 = resultado;
+                    result = number2 * (number1 / 100.0);
                     break;
             }
-            res.setText("" + resultado);
-        } catch (NumberFormatException nfe) {
+            restxt.setText("" + result);
+            number1 = result;
         }
     }
 
-    public void clear(View view) {
-       switch (view.getId()){
+    public void OnClickListenerClear(View view) {
+        switch (view.getId()) {
 
-           case R.id.btndelete:
-               res.setText("");
-               operando1=0.0;
-               operand2=0.0;
-           break;
+            case R.id.btndelete:
+                restxt.setText("");
+                number1 = 0.0;
+                number2 = 0.0;
+                break;
 
-           case R.id.btndel:
-               if(!res.getText().toString().equals("")){
-                   res.setText(res.getText().subSequence(0, res.getText().length()-1)+"");
-               }
-
-       }
-
+            case R.id.btndel:
+                if (!isResultNumberEmpty()) {
+                    restxt.setText(restxt.getText().subSequence(0, restxt.getText().length() - 1) + "");
+                }
+        }
     }
 }
