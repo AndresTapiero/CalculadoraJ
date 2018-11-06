@@ -75,46 +75,51 @@ public class MainActivity extends AppCompatActivity {
         return restxt.getText().toString().equals("");
     }
 
+
+
     public void OnClickListenerOperators(View view) {
-        String text1;
-        text1 = restxt.getText().toString();
 
         switch (view.getId()) {
             case R.id.btnSuma:
                 if (!isResultNumberEmpty()) {
-                    number1 = Double.parseDouble(text1);
+                    GetFirstNumber();
                     operador = 1;
                 }
                 break;
 
             case R.id.btnMenos:
                 if (!isResultNumberEmpty()) {
-                    number1 = Double.parseDouble(text1);
+                    GetFirstNumber();
                     operador = 2;
                 }
                 break;
 
             case R.id.btnmtl:
                 if (!isResultNumberEmpty()) {
-                    number1 = Double.parseDouble(text1);
+                    GetFirstNumber();
                     operador = 3;
                 }
                 break;
 
             case R.id.btndv:
                 if (!isResultNumberEmpty()) {
-                    number1 = Double.parseDouble(text1);
+                    GetFirstNumber();
                     operador = 4;
                 }
-
                 break;
             case R.id.btnpor:
                 if (!isResultNumberEmpty()){
-                    number1 = Double.parseDouble(text1);
+                    GetFirstNumber();
                     operador = 5;}
                 break;
         }
         restxt.setText("");
+    }
+
+    private double GetFirstNumber(){
+            String text1;
+            text1 = restxt.getText().toString();
+            return number1= Double.parseDouble(text1);
     }
 
     public void OnClickListenerEqual(View view) {
