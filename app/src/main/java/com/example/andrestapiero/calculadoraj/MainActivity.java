@@ -7,18 +7,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     int operador = 0;
-    private TextView restxt;
+    private TextView textViewresultado;
     private double result, number1, number2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        restxt = (TextView) findViewById(R.id.resultado);
+        textViewresultado = (TextView) findViewById(R.id.resultado);
     }
 
     public void OnClickListenerNumbers(View view) {
-        String inputNumber = restxt.getText().toString();
+        String inputNumber = textViewresultado.getText().toString();
         String selectedNumber = "";
 
         switch (view.getId()) {
@@ -63,16 +63,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnpoint:
-                if (!isResultNumberEmpty() && !restxt.getText().toString().contains(".")) {
+                if (!isResultNumberEmpty() && !textViewresultado.getText().toString().contains(".")) {
                     selectedNumber = ".";
                 }
                 break;
         }
-        restxt.setText(inputNumber.concat(selectedNumber));
+        textViewresultado.setText(inputNumber.concat(selectedNumber));
     }
 
     private Boolean isResultNumberEmpty() {         //Metodo que compara si el String esta vacio
-        return restxt.getText().toString().equals("");
+        return textViewresultado.getText().toString().equals("");
     }
 
 
@@ -113,20 +113,20 @@ public class MainActivity extends AppCompatActivity {
                     operador = 5;}
                 break;
         }
-        restxt.setText("");
+        textViewresultado.setText("");
     }
 
     private double GetFirstNumber(){
-            String text1;
-            text1 = restxt.getText().toString();
-            return number1= Double.parseDouble(text1);
+            String textnumber1;
+            textnumber1 = textViewresultado.getText().toString();
+            return number1= Double.parseDouble(textnumber1);
     }
 
     public void OnClickListenerEqual(View view) {
 
         if (!isResultNumberEmpty()) {
-            String text2 = restxt.getText().toString();
-            number2 = Double.parseDouble(text2);
+            String textnumber2 = textViewresultado.getText().toString();
+            number2 = Double.parseDouble(textnumber2);
             switch (operador) {
                 case 1:
                     result = number1 + number2;
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     result = number2 * (number1 / 100.0);
                     break;
             }
-            restxt.setText("" + result);
+            textViewresultado.setText("" + result);
             number1 = result;
         }
     }
@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.btndelete:
-                restxt.setText("");
+                textViewresultado.setText("");
                 number1 = 0.0;
                 number2 = 0.0;
                 break;
 
             case R.id.btndel:
                 if (!isResultNumberEmpty()) {
-                    restxt.setText(restxt.getText().subSequence(0, restxt.getText().length() - 1) + "");
+                    textViewresultado.setText(textViewresultado.getText().subSequence(0, textViewresultado.getText().length() - 1) + "");
                 }
         }
     }
