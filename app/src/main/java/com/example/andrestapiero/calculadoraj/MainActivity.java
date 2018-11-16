@@ -77,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 selectedNumber = "9";
                 break;
             case R.id.btnpoint:
-                if (!isResultNumberEmpty() && !textViewResult.getText().toString().contains(".")) {
-                    selectedNumber = ".";
+                if (isResultNumberEmpty() && !textViewResult.getText().toString().contains(".")) {
+                    selectedNumber = "0.";
+                }else{
+                    if(isResultNumberEmpty()){
+                    selectedNumber = "0.";}
                 }
                 break;
         }
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnMenos:
                 selectedOperator = 2;
                 break;
-            case R.id.btnmtl:
+            case R.id.btnMtl:
                 selectedOperator = 3;
                 break;
             case R.id.btndv:
