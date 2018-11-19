@@ -1,20 +1,32 @@
 package com.example.andrestapiero.calculadoraj;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private int operator;
     private TextView textViewResult;
+    private TextView textViewGuia;
     private double number1, number2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //
+       // number1 = savedInstanceState.get
+        //
         textViewResult = findViewById(R.id.resultado);
+        textViewGuia= findViewById(R.id.guia);
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+      //  outState.putInt("selec", (String) inputNumber.concat(selectedNumber));
+        super.onSaveInstanceState(outState);
     }
 
     private void setOperator (int operator) {
@@ -77,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedNumber = "9";
                 break;
             case R.id.btnpoint:
-                if (isResultNumberEmpty() && !textViewResult.getText().toString().contains(".")) {
-                    selectedNumber = "0.";
+                if (!isResultNumberEmpty() && !textViewResult.getText().toString().contains(".")) {
+                    selectedNumber = ".";
                 }else{
                     if(isResultNumberEmpty()){
                     selectedNumber = "0.";}
@@ -86,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         textViewResult.setText(inputNumber.concat(selectedNumber));
+     //   textViewGuia.setText(inputNumber.concat(selectedNumber));
     }
 
     private Boolean isResultNumberEmpty() {         //Metodo que compara si el String esta vacio
@@ -94,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickListenerOperators(View view) {
         int selectedOperator = 0;
-
+       // String error = "Error";
         switch (view.getId()) {
             case R.id.btnSuma:
                 selectedOperator = 1;
+//                signo="+";
                 break;
             case R.id.btnMenos:
                 selectedOperator = 2;
@@ -109,7 +123,12 @@ public class MainActivity extends AppCompatActivity {
                 selectedOperator = 4;
                 break;
             case R.id.btnpor:
+                if(!isResultNumberEmpty()){
                 selectedOperator = 5;
+                }else{
+                 //   textViewResult.setText(error);
+                    Toast.makeText(this, "Error inserte número", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         saveFirstNumber();
@@ -125,13 +144,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickListenerEqual(View view) {
-        double result = 0;
+        double result=0;
         if (!isResultNumberEmpty()) {
             String textNumber2 = textViewResult.getText().toString();
             setSecondNumber(Double.parseDouble(textNumber2));
             switch (getOperator()) {
                 case 1:
                     result = getFirstNumber() + getSecondNumber();
+             
                     break;
                 case 2:
                     result = getFirstNumber() - getSecondNumber();
@@ -145,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
                 case 5:
                     result = getSecondNumber() * (getFirstNumber() / 100.0);
                     break;
+                    default:
+                        result=getSecondNumber();
             }
             textViewResult.setText(""+result);
             setFirstNumber(result);
@@ -156,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btndelete:
                 textViewResult.setText("");
+                textViewGuia.setText("");
                 setFirstNumber(0.0);
                 setSecondNumber(0.0);
                 break;

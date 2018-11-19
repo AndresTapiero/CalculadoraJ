@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Calculadora</string>
+    <string name="btnDelete1">Del</string>
+    <string name="btnC">C</string>
 </resources>
